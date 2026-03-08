@@ -2,7 +2,7 @@
 
 Visual timeline of TerraStudio's development from first commit to v0.39.0 (Feb 19 – Mar 8, 2026).
 
-<video src="video/terrastudio-dev-history.mp4" controls width="100%"></video>
+<video src="https://github.com/user-attachments/assets/478e0a93-b8fb-4963-a21b-89c8438bcdb5" controls width="100%"></video>
 
 > **Note:** GitHub may not render the video inline. If so, [download and watch it directly](video/terrastudio-dev-history.mp4) or clone the repo.
 

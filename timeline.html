@@ -4,81 +4,43 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TerraStudio Development Timeline</title>
-<script src="https://unpkg.com/vis-timeline@7.7.3/standalone/umd/vis-timeline-graph2d.min.js"></script>
-<link href="https://unpkg.com/vis-timeline@7.7.3/styles/vis-timeline-graph2d.min.css" rel="stylesheet">
 <style>
   :root {
-    --feat: #3b82f6; --fix: #ef4444; --chore: #6b7280; --docs: #22c55e;
-    --refactor: #a855f7; --test: #14b8a6; --ci: #eab308;
     --bg: #0f172a; --bg2: #1e293b; --bg3: #334155;
     --text: #e2e8f0; --text2: #94a3b8; --border: #475569;
+    --axis: #334155; --tick: #94a3b8; --grid: #475569;
+  }
+  .light {
+    --bg: #f8fafc; --bg2: #e2e8f0; --bg3: #cbd5e1;
+    --text: #1e293b; --text2: #64748b; --border: #cbd5e1;
+    --axis: #cbd5e1; --tick: #64748b; --grid: #94a3b8;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); overflow: hidden; }
 
-  .header { padding: 24px 32px 16px; background: var(--bg2); border-bottom: 1px solid var(--border); }
+  .header { padding: 20px 32px 12px; background: var(--bg2); border-bottom: 1px solid var(--border); }
   .header h1 { font-size: 22px; font-weight: 700; }
-  .header h1 span { color: var(--feat); }
+  .header h1 span { color: #3b82f6; }
   .header .sub { color: var(--text2); font-size: 13px; margin-top: 2px; }
 
-  .controls { display: flex; gap: 6px; padding: 10px 32px; align-items: center; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .controls { display: flex; gap: 8px; padding: 10px 32px; align-items: center; border-bottom: 1px solid var(--border); flex-wrap: wrap; background: var(--bg2); }
   .controls-label { font-size: 10px; color: var(--text2); text-transform: uppercase; letter-spacing: .5px; margin-right: 4px; }
   .ctrl {
     display: flex; align-items: center; gap: 5px; padding: 4px 10px;
     border-radius: 4px; cursor: pointer; font-size: 12px; user-select: none;
-    transition: opacity .15s; border: 1px solid transparent;
+    transition: opacity .15s; border: 1px solid transparent; color: var(--text);
   }
   .ctrl:hover { border-color: var(--border); }
   .ctrl.off { opacity: .25; }
   .ctrl-dot { width: 10px; height: 10px; border-radius: 50%; }
   .ctrl-count { color: var(--text2); font-size: 11px; }
+  .ctrl-sep { width: 1px; height: 18px; background: var(--border); margin: 0 6px; }
+  .ctrl:not(.off).scale-active { border-color: var(--border); }
 
-  #timeline { width: 100%; height: calc(100vh - 120px); }
+  .timeline-wrap { position: relative; width: 100%; height: calc(100vh - 110px); overflow: hidden; cursor: grab; }
+  .timeline-wrap:active { cursor: grabbing; }
 
-  /* vis-timeline dark theme overrides */
-  .vis-timeline { border: none !important; background: var(--bg) !important; font-family: inherit !important; }
-  .vis-panel.vis-bottom, .vis-panel.vis-center, .vis-panel.vis-top { border-color: var(--border) !important; }
-  .vis-time-axis .vis-text { color: var(--text2) !important; font-size: 11px !important; }
-  .vis-time-axis .vis-grid.vis-minor { border-color: rgba(71,85,105,.3) !important; }
-  .vis-time-axis .vis-grid.vis-major { border-color: rgba(71,85,105,.6) !important; }
-  .vis-panel.vis-center { background: var(--bg) !important; }
-  .vis-labelset .vis-label { color: var(--text) !important; background: var(--bg2) !important; border-bottom-color: var(--border) !important; font-size: 12px !important; font-weight: 600 !important; }
-  .vis-foreground .vis-group { border-bottom-color: var(--border) !important; }
-  .vis-item { background: none !important; border: none !important; box-shadow: none !important; }
-  .vis-item .vis-item-overflow { overflow: visible !important; }
-  .vis-item.vis-box { background: none !important; border: none !important; box-shadow: none !important; }
-  .vis-item.vis-box .vis-item-content { padding: 0 !important; display: flex; align-items: center; justify-content: center; }
-  .vis-item .vis-item-content { padding: 0 !important; }
-  .vis-item.vis-line { display: none !important; }
-  .vis-item .vis-dot { display: none !important; }
-
-  /* Custom dot rendering */
-  .commit-dot {
-    width: 12px; height: 12px; border-radius: 50%;
-    display: block; cursor: pointer;
-    transition: transform .1s;
-    min-width: 12px; min-height: 12px;
-  }
-  .commit-dot:hover { transform: scale(1.8); }
-  .commit-dot.milestone {
-    width: 16px; height: 16px;
-    border: 2px solid rgba(255,255,255,.8);
-    margin: -2px;
-  }
-
-  /* Version marker lines */
-  .vis-item.vis-range.version-marker {
-    background: rgba(59,130,246,.08) !important;
-    border-left: 2px solid var(--feat) !important;
-    border-right: none !important;
-    border-top: none !important;
-    border-bottom: none !important;
-  }
-  .version-label {
-    font-size: 9px; font-weight: 700; color: var(--feat);
-    background: rgba(59,130,246,.15); padding: 1px 5px; border-radius: 2px;
-    white-space: nowrap;
-  }
+  canvas { display: block; }
 
   /* Tooltip */
   .tip {
@@ -91,22 +53,22 @@
   .tip-hash { font-family: 'Cascadia Code','Fira Code',monospace; font-size: 11px; color: var(--text2); }
   .tip-time { font-size: 11px; color: var(--text2); margin-bottom: 6px; }
   .tip-msg { color: var(--text); line-height: 1.4; }
-  .tip-ver { margin-top: 6px; color: var(--feat); font-weight: 600; font-size: 12px; }
+  .tip-ver { margin-top: 6px; color: #3b82f6; font-weight: 600; font-size: 12px; }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar { height: 8px; width: 8px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 4px; }
+  .zoom-hint { position: absolute; bottom: 12px; right: 20px; font-size: 11px; color: var(--text2); pointer-events: none; }
 </style>
 </head>
 <body>
 
 <div class="header">
   <h1>Terra<span>Studio</span> Development Timeline</h1>
-  <div class="sub">221 commits &middot; 19 days &middot; Feb 19 &ndash; Mar 9, 2026</div>
+  <div class="sub">221 commits<span id="subtitle"> &middot; 19 days &middot; Feb 19 &ndash; Mar 9, 2026</span></div>
 </div>
 <div class="controls" id="controls"></div>
-<div id="timeline"></div>
+<div class="timeline-wrap" id="wrap">
+  <canvas id="canvas"></canvas>
+  <div class="zoom-hint">Scroll to zoom &middot; Drag to pan</div>
+</div>
 <div class="tip" id="tip"></div>
 
 <script>
@@ -340,89 +302,334 @@ const TYPES={
   ci:{l:'CI',c:'#eab308'}
 };
 
-const GROUP_ORDER = ['feat','fix','refactor','docs','chore','test','ci'];
+// --- Scale definitions ---
+const HOUR = 3600000;
+const DAY = 86400000;
+const WEEK = 7 * DAY;
+const SCALES = [
+  { id: '6h',   label: '6 Hours', interval: 6 * HOUR },
+  { id: '1d',   label: '1 Day',   interval: DAY },
+  { id: '1w',   label: '1 Week',  interval: WEEK },
+  { id: '1mo',  label: '1 Month', interval: null }, // special handling
+];
+let currentScale = '1d';
 
-// Build groups (swim lanes by type)
-const groups = new vis.DataSet(
-  GROUP_ORDER.map(k => ({
-    id: k,
-    content: `<span style="color:${TYPES[k].c}">${TYPES[k].l}</span>`,
-    style: `border-bottom: 2px solid ${TYPES[k].c}22`
-  }))
-);
+function getScaleTicks(vStart, vEnd) {
+  const scale = SCALES.find(s => s.id === currentScale);
+  const ticks = [];
 
-// Build items
-const items = new vis.DataSet(
-  COMMITS.map(c => {
-    const info = TYPES[c.t] || TYPES.chore;
-    const ms = c.v ? ' milestone' : '';
-    return {
-      id: c.n,
-      group: c.t,
-      start: new Date(c.dt),
-      type: 'box',
-      className: 'commit-item',
-      content: `<div class="commit-dot${ms}" style="background:${info.c}"></div>`,
-      title: '', // we handle tooltip ourselves
-      _data: c
-    };
-  })
-);
+  if (scale.id === '1mo') {
+    // Month boundaries
+    let d = new Date(vStart);
+    d = new Date(d.getFullYear(), d.getMonth(), 1);
+    while (d.getTime() <= vEnd + 31 * DAY) {
+      ticks.push({
+        time: d.getTime(),
+        label: d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+      });
+      d = new Date(d.getFullYear(), d.getMonth() + 1, 1);
+    }
+    return ticks;
+  }
 
-// Create timeline
-const container = document.getElementById('timeline');
-const timeline = new vis.Timeline(container, items, groups, {
-  min: new Date('2026-02-19T00:00'),
-  max: new Date('2026-03-10T00:00'),
-  start: new Date('2026-02-19T00:00'),
-  end: new Date('2026-03-10T00:00'),
-  zoomMin: 1000 * 60 * 60 * 4,   // 4 hours
-  zoomMax: 1000 * 60 * 60 * 24 * 25, // 25 days
-  orientation: 'top',
-  showCurrentTime: false,
-  stack: true,
-  margin: { item: { horizontal: 0, vertical: 2 } },
-  tooltip: { followMouse: true, delay: 0 },
-  verticalScroll: false,
-  horizontalScroll: true,
-  zoomKey: 'ctrlKey',
-});
+  const interval = scale.interval;
+  // Align start to interval boundary
+  let t = Math.floor((vStart - DAY) / interval) * interval;
+  // For sub-day, align to a nice boundary from midnight
+  if (scale.id === '6h') {
+    const base = new Date(vStart);
+    base.setHours(0, 0, 0, 0);
+    t = base.getTime();
+    while (t < vStart - interval) t += interval;
+  }
 
-// Custom tooltip on hover
+  while (t <= vEnd + interval) {
+    const d = new Date(t);
+    let label;
+    if (scale.id === '6h') {
+      label = d.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', hour12: true });
+    } else if (scale.id === '1d') {
+      label = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    } else if (scale.id === '1w') {
+      label = 'W' + getWeekLabel(d) + ' ' + d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    }
+    // Skip labels that would overlap (too many on screen)
+    const pixPerTick = (W - 80) / ((vEnd - vStart) / interval);
+    if (pixPerTick < 50) {
+      // Thin out: only show every Nth
+      const idx = ticks.length;
+      const skip = Math.ceil(50 / pixPerTick);
+      ticks.push({ time: t, label: (idx % skip === 0) ? label : null });
+    } else {
+      ticks.push({ time: t, label });
+    }
+    t += interval;
+  }
+  return ticks;
+}
+
+function getWeekLabel(d) {
+  const start = new Date(d.getFullYear(), 0, 1);
+  return Math.ceil(((d - start) / DAY + start.getDay() + 1) / 7);
+}
+
+// --- State ---
+const active = new Set(Object.keys(TYPES));
+const tMin = new Date('2026-02-19T00:00').getTime();
+const tMax = new Date('2026-03-10T00:00').getTime();
+let viewStart = tMin;
+let viewEnd = tMax;
+
+const wrap = document.getElementById('wrap');
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
 const tip = document.getElementById('tip');
-container.addEventListener('mousemove', (e) => {
-  const item = timeline.getEventProperties(e).item;
-  if (item) {
-    const c = COMMITS.find(x => x.n === item);
-    if (c) {
-      const info = TYPES[c.t] || TYPES.chore;
-      tip.innerHTML = `
-        <div class="tip-head">
-          <div class="tip-badge" style="background:${info.c}22;color:${info.c}">${info.l}</div>
-          <div class="tip-hash">#${c.n} &middot; ${c.h}</div>
-        </div>
-        <div class="tip-time">${c.dt.replace('T',' at ')}</div>
-        <div class="tip-msg">${c.m}</div>
-        ${c.v ? `<div class="tip-ver">Release v${c.v}</div>` : ''}
-      `;
-      tip.style.display = 'block';
-      let x = e.clientX + 14, y = e.clientY - 90;
-      if (x + 380 > window.innerWidth) x = e.clientX - 394;
-      if (y < 8) y = e.clientY + 20;
-      tip.style.left = x + 'px';
-      tip.style.top = y + 'px';
-      return;
+const dpr = window.devicePixelRatio || 1;
+
+let W, H;
+function resize() {
+  W = wrap.clientWidth;
+  H = wrap.clientHeight;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  draw();
+}
+window.addEventListener('resize', resize);
+
+// --- Coordinate helpers ---
+function timeToX(t) {
+  return 60 + (t - viewStart) / (viewEnd - viewStart) * (W - 80);
+}
+function xToTime(x) {
+  return viewStart + (x - 60) / (W - 80) * (viewEnd - viewStart);
+}
+
+// --- Filtered commits ---
+function visibleCommits() {
+  return COMMITS.filter(c => active.has(c.t));
+}
+
+// --- Drawing ---
+function getThemeColors() {
+  const s = getComputedStyle(document.documentElement);
+  return {
+    bg: s.getPropertyValue('--bg').trim(),
+    axis: s.getPropertyValue('--grid').trim(),
+    tickLine: s.getPropertyValue('--axis').trim(),
+    tickText: s.getPropertyValue('--tick').trim(),
+  };
+}
+
+function draw() {
+  const theme = getThemeColors();
+  ctx.clearRect(0, 0, W, H);
+  const midY = H / 2;
+  const commits = visibleCommits();
+
+  // Axis line
+  ctx.strokeStyle = theme.axis;
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(60, midY);
+  ctx.lineTo(W - 20, midY);
+  ctx.stroke();
+
+  // Date ticks based on current scale
+  ctx.fillStyle = theme.tickText;
+  ctx.font = '11px system-ui, sans-serif';
+  ctx.textAlign = 'center';
+
+  const ticks = getScaleTicks(viewStart, viewEnd);
+  for (const { time, label } of ticks) {
+    const x = timeToX(time);
+    if (x < 55 || x > W - 15) continue;
+    ctx.strokeStyle = theme.tickLine;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(x, midY - 8);
+    ctx.lineTo(x, midY + 8);
+    ctx.stroke();
+    if (showDates && label) {
+      ctx.fillStyle = theme.tickText;
+      ctx.fillText(label, x, midY + 24);
     }
   }
-  tip.style.display = 'none';
-});
-container.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
 
-// Legend / filter controls
-const active = new Set(Object.keys(TYPES));
+  // Version markers
+  const versionCommits = commits.filter(c => c.v);
+  ctx.font = 'bold 9px system-ui, sans-serif';
+  ctx.textAlign = 'center';
+  for (const c of versionCommits) {
+    const t = new Date(c.dt).getTime();
+    const x = timeToX(t);
+    if (x < 55 || x > W - 15) continue;
+    ctx.strokeStyle = 'rgba(59,130,246,0.25)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([3, 3]);
+    ctx.beginPath();
+    ctx.moveTo(x, midY - 60);
+    ctx.lineTo(x, midY - 14);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = 'rgba(59,130,246,0.7)';
+    ctx.fillText('v' + c.v, x, midY - 64);
+  }
+
+  // Commit dots - spread vertically to avoid overlap
+  // Group by proximity on x-axis and stack
+  const dotR = 6;
+  const sorted = commits.map(c => ({
+    ...c,
+    ts: new Date(c.dt).getTime(),
+    x: timeToX(new Date(c.dt).getTime()),
+  })).sort((a, b) => a.ts - b.ts);
+
+  // Stack dots that overlap
+  const placed = [];
+  for (const c of sorted) {
+    let y = midY;
+    let dir = -1; // start above
+    let step = 0;
+    while (true) {
+      const collision = placed.some(p =>
+        Math.abs(p.x - c.x) < dotR * 2.2 && Math.abs(p.y - y) < dotR * 2.2
+      );
+      if (!collision) break;
+      step++;
+      y = midY + dir * step * (dotR * 2.2);
+      dir = dir > 0 ? -(dir) : -(dir) + 1 > 0 ? 1 : -1; // alternate above/below
+      // Simpler: alternate above and below
+      if (step % 2 === 0) {
+        y = midY - (Math.ceil(step / 2)) * dotR * 2.2;
+      } else {
+        y = midY + (Math.ceil(step / 2)) * dotR * 2.2;
+      }
+    }
+    c.y = y;
+    placed.push(c);
+  }
+
+  // Store for hit testing
+  window._dots = placed;
+
+  // Draw dots
+  for (const c of placed) {
+    const info = TYPES[c.t] || TYPES.chore;
+    const r = c.v ? dotR + 2 : dotR;
+
+    ctx.beginPath();
+    ctx.arc(c.x, c.y, r, 0, Math.PI * 2);
+    ctx.fillStyle = info.c;
+    ctx.fill();
+
+    if (c.v) {
+      ctx.strokeStyle = document.documentElement.classList.contains('light') ? 'rgba(0,0,0,0.5)' : 'rgba(255,255,255,0.7)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+  }
+}
+
+// --- Tooltip ---
+let hoveredDot = null;
+canvas.addEventListener('mousemove', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  const dots = window._dots || [];
+
+  let found = null;
+  let bestDist = Infinity;
+  for (const d of dots) {
+    const dist = Math.hypot(d.x - mx, d.y - my);
+    const r = d.v ? 8 : 6;
+    if (dist < r + 4 && dist < bestDist) {
+      bestDist = dist;
+      found = d;
+    }
+  }
+
+  if (found) {
+    hoveredDot = found;
+    const info = TYPES[found.t] || TYPES.chore;
+    tip.innerHTML = `
+      <div class="tip-head">
+        <div class="tip-badge" style="background:${info.c}22;color:${info.c}">${info.l}</div>
+        <div class="tip-hash">#${found.n} &middot; ${found.h}</div>
+      </div>
+      <div class="tip-time">${found.dt.replace('T',' at ')}</div>
+      <div class="tip-msg">${found.m}</div>
+      ${found.v ? `<div class="tip-ver">Release v${found.v}</div>` : ''}
+    `;
+    tip.style.display = 'block';
+    let tx = e.clientX + 14, ty = e.clientY - 90;
+    if (tx + 380 > window.innerWidth) tx = e.clientX - 394;
+    if (ty < 8) ty = e.clientY + 20;
+    tip.style.left = tx + 'px';
+    tip.style.top = ty + 'px';
+    canvas.style.cursor = 'pointer';
+  } else {
+    hoveredDot = null;
+    tip.style.display = 'none';
+    canvas.style.cursor = isDragging ? 'grabbing' : 'grab';
+  }
+});
+canvas.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
+
+// --- Pan & Zoom ---
+let isDragging = false;
+let dragStartX = 0;
+let dragStartView = 0;
+
+canvas.addEventListener('mousedown', (e) => {
+  isDragging = true;
+  dragStartX = e.clientX;
+  dragStartView = viewStart;
+  canvas.style.cursor = 'grabbing';
+});
+window.addEventListener('mousemove', (e) => {
+  if (!isDragging) return;
+  const dx = e.clientX - dragStartX;
+  const timePerPx = (viewEnd - viewStart) / (W - 80);
+  const dt = -dx * timePerPx;
+  const newStart = dragStartView + dt;
+  const range = viewEnd - viewStart;
+  viewStart = newStart;
+  viewEnd = newStart + range;
+  draw();
+});
+window.addEventListener('mouseup', () => {
+  isDragging = false;
+  if (!hoveredDot) canvas.style.cursor = 'grab';
+});
+
+canvas.addEventListener('wheel', (e) => {
+  e.preventDefault();
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const pivot = xToTime(mx);
+  const factor = e.deltaY > 0 ? 1.15 : 1 / 1.15;
+  const minRange = 4 * 3600000;   // 4 hours
+  const maxRange = 25 * 86400000; // 25 days
+
+  let newRange = (viewEnd - viewStart) * factor;
+  newRange = Math.max(minRange, Math.min(maxRange, newRange));
+
+  const ratio = (pivot - viewStart) / (viewEnd - viewStart);
+  viewStart = pivot - ratio * newRange;
+  viewEnd = viewStart + newRange;
+  draw();
+}, { passive: false });
+
+// --- Filter controls ---
 const counts = {};
 Object.keys(TYPES).forEach(k => counts[k] = 0);
 COMMITS.forEach(c => counts[c.t] = (counts[c.t] || 0) + 1);
+
+let showDates = true;
 
 const ctrl = document.getElementById('controls');
 ctrl.innerHTML = '<span class="controls-label">Filter:</span>';
@@ -434,28 +641,85 @@ Object.entries(TYPES).forEach(([k, v]) => {
     if (active.has(k)) {
       active.delete(k);
       el.classList.add('off');
-      // Hide items of this type
-      const toRemove = COMMITS.filter(c => c.t === k).map(c => c.n);
-      items.remove(toRemove);
     } else {
       active.add(k);
       el.classList.remove('off');
-      // Re-add items of this type
-      const toAdd = COMMITS.filter(c => c.t === k).map(c => {
-        const info = TYPES[c.t] || TYPES.chore;
-        const ms = c.v ? ' milestone' : '';
-        return {
-          id: c.n, group: c.t, start: new Date(c.dt), type: 'point',
-          className: 'commit-item',
-          content: `<div class="commit-dot${ms}" style="background:${info.c}"></div>`,
-          _data: c
-        };
-      });
-      items.add(toAdd);
     }
+    draw();
   };
   ctrl.appendChild(el);
 });
+
+// Date labels toggle
+const sep = document.createElement('div');
+sep.className = 'ctrl-sep';
+ctrl.appendChild(sep);
+
+const dateToggle = document.createElement('div');
+dateToggle.className = 'ctrl';
+dateToggle.innerHTML = '<span class="controls-label" style="margin:0">Dates</span>';
+const subtitle = document.getElementById('subtitle');
+const scaleEls = []; // collected after creation, toggled by Dates
+dateToggle.onclick = () => {
+  showDates = !showDates;
+  dateToggle.classList.toggle('off', !showDates);
+  subtitle.style.display = showDates ? '' : 'none';
+  scaleEls.forEach(el => el.style.display = showDates ? '' : 'none');
+  draw();
+};
+ctrl.appendChild(dateToggle);
+
+// Scale toggle buttons
+const sep2 = document.createElement('div');
+sep2.className = 'ctrl-sep';
+scaleEls.push(sep2);
+ctrl.appendChild(sep2);
+
+const scaleLabel = document.createElement('span');
+scaleLabel.className = 'controls-label';
+scaleLabel.textContent = 'Scale:';
+scaleEls.push(scaleLabel);
+ctrl.appendChild(scaleLabel);
+
+const scaleButtons = {};
+SCALES.forEach(s => {
+  const el = document.createElement('div');
+  el.className = 'ctrl' + (s.id === currentScale ? '' : ' off');
+  el.textContent = s.label;
+  el.onclick = () => {
+    currentScale = s.id;
+    Object.values(scaleButtons).forEach(b => b.classList.add('off'));
+    el.classList.remove('off');
+    // Zoom viewport to show a sensible range for this scale
+    const mid = (viewStart + viewEnd) / 2;
+    const ranges = { '6h': 2 * DAY, '1d': tMax - tMin, '1w': tMax - tMin, '1mo': tMax - tMin };
+    const newRange = ranges[s.id] || (tMax - tMin);
+    viewStart = mid - newRange / 2;
+    viewEnd = mid + newRange / 2;
+    draw();
+  };
+  scaleButtons[s.id] = el;
+  scaleEls.push(el);
+  ctrl.appendChild(el);
+});
+
+// Theme toggle
+const sep3 = document.createElement('div');
+sep3.className = 'ctrl-sep';
+ctrl.appendChild(sep3);
+
+const themeToggle = document.createElement('div');
+themeToggle.className = 'ctrl';
+themeToggle.innerHTML = '<span class="controls-label" style="margin:0">Light</span>';
+themeToggle.onclick = () => {
+  const isLight = document.documentElement.classList.toggle('light');
+  themeToggle.querySelector('.controls-label').textContent = isLight ? 'Dark' : 'Light';
+  draw();
+};
+ctrl.appendChild(themeToggle);
+
+// --- Init ---
+resize();
 </script>
 </body>
 </html>

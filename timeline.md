@@ -1,6 +1,6 @@
 # TerraStudio Development Timeline Data
 
-> Structured commit data for timeline visualization. 239 commits, Feb 19 – Mar 9, 2026.
+> Structured commit data for timeline visualization. 320 commits, Feb 19 – Mar 23, 2026.
 
 ## Format
 Each entry: `hash | datetime | type | message | version (if any)`
@@ -232,4 +232,103 @@ Types: feat, fix, chore, docs, refactor, test, merge, ci
 | 219 | 69dcf07 | 2026-03-08T23:04 | chore | baseline 4 new i18n violations from plan/connection UX features | - |
 | 220 | 3aaf777 | 2026-03-08T23:52 | docs | add version history changelog and update MCP port (v0.39.1) | 0.39.1 |
 | 221 | c6fb94b | 2026-03-09T03:22 | fix | annotation positioning on load and cost panel crash on synthetic nodes | - |
+| 222 | 1abf26b | 2026-03-12T11:53 | chore | Merge pull request #27 (release-please) | - |
+| 223 | 5cd8e7e | 2026-03-13T12:23 | fix | remove redundant snap-on-drop that caused grid placement drift | - |
+| 224 | 084cd22 | 2026-03-13T12:30 | fix | implement proper keyboard arrow key movement for canvas nodes | - |
+| 225 | 7faa211 | 2026-03-13T13:05 | fix | simplify project creation to 2-step workflow | - |
+| 226 | 0f000e2 | 2026-03-13T13:34 | fix | replace naming convention checkbox with toggle switch | - |
+| 227 | 0dc2670 | 2026-03-13T17:53 | fix | canvas crosshair cursor and middle-click tab close | - |
+| 228 | 7b06a5d | 2026-03-15T16:56 | feat | add Display Name field for canvas nodes | 0.39.0 |
+| 229 | 9e11278 | 2026-03-15T17:02 | fix | inherit env/region naming tokens from parent Resource Group | - |
+| 230 | fcd0bea | 2026-03-15T17:11 | fix | remove redundant naming_region field and fix slug extraction feedback loop | - |
+| 231 | 30c5ece | 2026-03-15T17:24 | fix | decouple naming convention slug from computed name/label | - |
+| 232 | 47fc4ea | 2026-03-15T17:32 | fix | restore naming_region shortcode field on Resource Group | - |
+| 233 | 089e7a5 | 2026-03-15T17:38 | fix | keep label in sync with naming slug, simplify canvas label derivation | - |
+| 234 | da16c3b | 2026-03-15T17:41 | fix | propagate RG naming overrides to nodes without a stored namingSlug | - |
+| 235 | f1bc179 | 2026-03-15T17:52 | fix | derive naming region from RG location dropdown | 0.39.1 |
+| 236 | f821a77 | 2026-03-15T18:09 | refactor | generalize naming token inheritance as schema-declared NamingTokenSource | - |
+| 237 | c00c425 | 2026-03-15T19:00 | docs | add platform architecture plan for CLI + web + IPlatform | - |
+| 238 | 8e38f6f | 2026-03-15T19:24 | feat | extract @terrastudio/project package (Phase A of platform architecture) | - |
+| 239 | 3a85fa5 | 2026-03-15T19:31 | chore | update lockfile for @terrastudio/project package | - |
+| 240 | 87c6f53 | 2026-03-15T19:50 | feat | delete MCP bridge, scaffold @terrastudio/cli (Phase B) | - |
+| 241 | 59e3be9 | 2026-03-15T20:05 | feat | implement full MCP command parity in @terrastudio/cli | - |
+| 242 | 23241e3 | 2026-03-15T20:14 | feat | add shared validation layer to @terrastudio/project and CLI | - |
+| 243 | 2bc7e3c | 2026-03-15T21:31 | feat | Phase C — IProjectStorage interface + platform adapters | - |
+| 244 | b91eead | 2026-03-15T21:39 | chore | centralize versioning and reorganize plugin packages | - |
+| 245 | c669758 | 2026-03-15T21:45 | feat | implement full HCL generation pipeline in CLI (tstudio hcl generate) | - |
+| 246 | 25ed887 | 2026-03-15T21:51 | feat | add project create and terraform command group to CLI | - |
+| 247 | 7b0d76d | 2026-03-15T21:57 | feat | expand CLI resource and project config commands | - |
+| 248 | 216b68c | 2026-03-15T22:03 | chore | bump version to 0.40.0 | 0.40.0 |
+| 249 | 882d0a8 | 2026-03-15T22:09 | feat | add CLI standalone binary packaging and release workflow | - |
+| 250 | e1561ce | 2026-03-15T22:14 | feat | add CLI install scripts and npm publish on release | - |
+| 251 | 2da3469 | 2026-03-15T22:16 | chore | bump version to 0.41.0 | 0.41.0 |
+| 252 | c2e732b | 2026-03-15T22:23 | chore | sync release-please manifest to 0.41.0 | 0.41.0 |
+| 253 | 229e6e2 | 2026-03-15T22:24 | chore | release 0.41.1 | 0.41.1 |
+| 254 | e3d69b9 | 2026-03-15T22:45 | fix | use direct pkg binary path to avoid conflict with npm pkg command | - |
+| 255 | f3b746a | 2026-03-15T22:46 | fix | switch npm publish to OIDC trusted publishing (no token required) | - |
+| 256 | ddfec77 | 2026-03-15T22:54 | fix | rename npm package to @afroze9/terrastudio-cli | - |
+| 257 | 96a8859 | 2026-03-15T23:04 | fix | support manual release trigger in addition to release-please | - |
+| 258 | b8ee172 | 2026-03-15T23:22 | fix | remove email address from package author fields | - |
+| 259 | 4929ca1 | 2026-03-15T23:22 | chore | release 0.41.2 | 0.41.2 |
+| 260 | 5737ff7 | 2026-03-15T23:32 | fix | track CLI package in release-please and bump to 0.41.2 | 0.41.2 |
+| 261 | 6c67ccd | 2026-03-15T23:32 | chore | release master | - |
+| 262 | 6a56c96 | 2026-03-15T23:39 | fix | remove manual release trigger, restore clean release-please flow | - |
+| 263 | 90f1e1a | 2026-03-15T23:47 | fix | trigger build jobs when CLI package releases independently of desktop | - |
+| 264 | 89abe38 | 2026-03-15T23:53 | fix | remove CLI from release-please tracking, gate all jobs on desktop release | - |
+| 265 | 4aa0f67 | 2026-03-15T23:59 | fix | force release-please PR for pending fixes | - |
+| 266 | 0cf439a | 2026-03-16T00:01 | fix | unblock release-please after tagging v0.41.3 | 0.41.3 |
+| 267 | 392d4b9 | 2026-03-16T00:03 | fix | sync release-please manifest to v0.41.3 | 0.41.3 |
+| 268 | fc61cd0 | 2026-03-16T00:04 | fix | trigger release after unblocking release-please | - |
+| 269 | 72b7716 | 2026-03-16T00:05 | chore | release 0.41.4 | 0.41.4 |
+| 270 | e70c08d | 2026-03-16T00:17 | fix | use npm publish with job-level id-token for OIDC trusted publishing | - |
+| 271 | 03e2090 | 2026-03-16T00:30 | feat | add structured logging across diagram, HCL gen, terraform, and project ops | - |
+| 272 | 9c5ef99 | 2026-03-16T00:34 | chore | release 0.41.5 | 0.41.5 |
+| 273 | 40d65d6 | 2026-03-16T00:42 | fix | remove --provenance flag from npm publish (scoped package %2f encoding bug) | - |
+| 274 | 8c1f869 | 2026-03-16T00:48 | fix | use Node 24 for npm publish to fix OIDC provenance 404 on scoped packages | - |
+| 275 | 27d7fc6 | 2026-03-16T00:49 | fix | trigger release to verify npm OIDC publish with Node 24 | - |
+| 276 | 5ef6b17 | 2026-03-16T00:49 | chore | release 0.41.6 | 0.41.6 |
+| 277 | dde4960 | 2026-03-16T00:59 | fix | add repository url to cli package.json for npm provenance verification | - |
+| 278 | 37ffab8 | 2026-03-16T00:59 | chore | prompt release-please to open next PR | - |
+| 279 | 4cee821 | 2026-03-16T01:07 | fix | bump version to 0.41.7 and align cli package version | 0.41.7 |
+| 280 | f4aa2ef | 2026-03-16T01:07 | chore | release 0.41.7 | 0.41.7 |
+| 281 | 7f4e3e7 | 2026-03-22T01:16 | feat | add annotation plugin and remove old annotation system (#31) | - |
+| 282 | 5562c9a | 2026-03-22T01:17 | chore | release 0.41.8 | 0.41.8 |
+| 283 | f2ae436 | 2026-03-22T01:23 | docs | add resource audit and evaluation criteria checklist | - |
+| 284 | 5897911 | 2026-03-22T01:49 | fix | resolve critical resource audit findings (#59, #74, #75, #76, #82, #84, #85, #86) | - |
+| 285 | 6eef7a3 | 2026-03-22T01:54 | fix | resolve high-priority resource audit findings (#77, #81, #83, #87) | - |
+| 286 | 90aeb5b | 2026-03-22T02:02 | fix | resolve high-priority resource audit findings (#63, #79, #80, #89) | - |
+| 287 | bfa89a4 | 2026-03-22T02:07 | fix | resolve high-priority resource audit findings (#62, #64, #90, #91) | - |
+| 288 | 2e607db | 2026-03-22T02:12 | fix | resolve high-priority resource audit findings (#60, #61, #88, #92) | - |
+| 289 | 929db70 | 2026-03-22T11:40 | fix | resolve resource audit findings (#51, #65, #66, #67) | - |
+| 290 | 8a18169 | 2026-03-22T11:49 | fix | resolve all remaining medium-priority resource audit findings | - |
+| 291 | 606e0d5 | 2026-03-22T12:11 | fix | CLI crashes when bundled/installed due to import.meta.url in CJS (#48) | - |
+| 292 | 5aefb50 | 2026-03-22T12:19 | chore | bump version to 0.42.0 | 0.42.0 |
+| 293 | 66837b5 | 2026-03-22T12:23 | fix | update release-please manifest to 0.42.0 | 0.42.0 |
+| 294 | c5a78ed | 2026-03-22T12:25 | docs | add release-please manifest to version bump checklist in CLAUDE.md | - |
+| 295 | 63391b9 | 2026-03-22T12:25 | chore | release 0.42.1 | 0.42.1 |
+| 296 | b318d9e | 2026-03-22T12:53 | fix | build CLI binaries on native OS instead of cross-compiling (#48) | - |
+| 297 | 3380399 | 2026-03-22T12:54 | fix | bump version to 0.42.2 — native CLI builds | 0.42.2 |
+| 298 | 6070ef6 | 2026-03-22T12:56 | chore | release 0.42.3 | 0.42.3 |
+| 299 | 31c8fcf | 2026-03-22T13:17 | feat | auto-detect project path in CLI when run from project directory | - |
+| 300 | eb4e9dd | 2026-03-22T13:18 | feat | bump version to 0.42.4 — CLI auto-detect project path | 0.42.4 |
+| 301 | 75dd0e7 | 2026-03-22T13:19 | chore | release 0.42.5 | 0.42.5 |
+| 302 | d4675dd | 2026-03-22T13:45 | feat | add node visual customization panel (#49) | - |
+| 303 | d09b5e0 | 2026-03-22T13:50 | feat | bump version to 0.43.0 — node visual customization panel | 0.43.0 |
+| 304 | 02c299d | 2026-03-22T14:08 | feat | add right-side activity bar with Properties and Visual Style panels (#49) | - |
+| 305 | a3141ea | 2026-03-22T14:24 | fix | properties panel not filling right panel height | 0.43.1 |
+| 306 | 222be01 | 2026-03-22T15:08 | feat | custom sticky note node with double-click creation (#49) | - |
+| 307 | f051afe | 2026-03-22T15:47 | feat | node type visibility toggles (#33) | - |
+| 308 | eee7334 | 2026-03-22T16:26 | fix | handle repositioning when toggling outputs on/off (#34) | - |
+| 309 | 33cb6b6 | 2026-03-22T18:41 | feat | add Azure AI plugin with 8 resources | - |
+| 310 | 91bf2cb | 2026-03-23T21:59 | feat | improve Azure AI plugin and fix CLI npm publish | 0.47.0 |
+| 311 | b707553 | 2026-03-23T22:03 | chore | release 0.47.1 | 0.47.1 |
+| 312 | 1193187 | 2026-03-23T22:05 | chore | Merge pull request #111 (release-please) | - |
+| 313 | 146c115 | 2026-03-23T22:06 | fix | update lockfile after CLI dependency changes | - |
+| 314 | cf5d5c4 | 2026-03-23T22:14 | chore | bump version to 0.47.2 to retrigger release | 0.47.2 |
+| 315 | 49afeda | 2026-03-23T22:16 | chore | release 0.47.3 | 0.47.3 |
+| 316 | 9ce7f30 | 2026-03-23T22:17 | chore | Merge pull request #112 (release-please) | - |
+| 317 | c93b822 | 2026-03-23T22:37 | feat | interactive CLI wizard for project create and optional path | 0.48.0 |
+| 318 | 1cfbd57 | 2026-03-23T22:39 | chore | release 0.48.1 | 0.48.1 |
+| 319 | fbdddd6 | 2026-03-23T22:39 | chore | Merge pull request #113 (release-please) | - |
+| 320 | 5c9d694 | 2026-03-23T23:34 | fix | drop macOS x86_64 release build | 0.48.2 |
 

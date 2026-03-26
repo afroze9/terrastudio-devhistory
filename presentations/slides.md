@@ -2,7 +2,7 @@
 theme: default
 title: Building TerraStudio with AI
 info: |
-  One Developer, 338 Commits, 33 Days — A case study in AI-assisted development
+  One Developer, 338 Commits, 33 Days - A case study in AI-assisted development
 class: text-center
 drawings:
   persist: false
@@ -21,148 +21,86 @@ Associate Director Engineering
 
 <v-clicks>
 
-- Can one developer + AI build a production-grade desktop app from scratch?
-- What breaks when AI writes 80% of the code?
-- Hard numbers: velocity, bugs, cost, and the "fix tax"
-- Key takeaways
+- Can <span class="font-extrabold text-teal-400">one developer + AI</span> build a <span class="font-extrabold text-teal-400">production-grade</span> desktop app from scratch?
+- What breaks when AI writes <span class="font-extrabold text-teal-400">80%</span> of the code?
+- Hard numbers: velocity, bugs, cost, and the <span class="font-extrabold text-teal-400">"fix tax"</span>
+- <span class="font-extrabold">Key Takeaways</span>
 
 </v-clicks>
 
 
 ---
-transition: none
----
 
+# The Use Case
 
-# The Challenge
-<v-click>
-Build a full desktop infrastructure-as-code visual editor + CLI from zero
-</v-click>
----
-transition: none
----
+Build a full desktop <span class="font-extrabold text-teal-400">infrastructure-as-code visual editor + CLI</span> from zero
 
-# The Challenge
+<v-clicks>
 
-## Visual Canvas for Designing Architectures
+- <span class="font-extrabold">Visual canvas</span> for designing Azure/AWS architectures with drag-and-drop
+- <span class="font-extrabold">Terraform HCL generation</span>, execution, and plan visualization
+- <span class="font-extrabold text-teal-400">72+ cloud resources</span> across Azure (50+), AWS (14+), and Azure AI (8)
+- Cost estimation, modules, <span class="font-extrabold">i18n</span> (6 languages), <span class="font-extrabold">accessibility</span> (WCAG AA)
+- <span class="font-extrabold">CLI</span> with HCL generation, project wizard, and native binary packaging
 
-Drag-and-drop Azure/AWS resources onto an interactive canvas with connections, containers, and real-time validation.
-
-<div class="flex justify-center mt-4">
-  <div class="w-3/4 h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 border-2 border-dashed border-gray-300">
-    <span class="text-lg">Screenshot: Canvas View</span>
-  </div>
-</div>
+</v-clicks>
 
 ---
-transition: none
----
 
-# The Challenge
+# The Use Case
 
-## Terraform HCL Generation & Plan Visualization
-
-Generate production-ready Terraform code, execute plans, and visualize changes — all from the UI.
-
-<div class="flex justify-center mt-4">
-  <div class="w-3/4 h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 border-2 border-dashed border-gray-300">
-    <span class="text-lg">Screenshot: HCL Generation / Plan View</span>
-  </div>
-</div>
-
----
-transition: none
----
-
-# The Challenge
-
-## 72+ Cloud Resources, Multi-Cloud Plugins
-
-Schema-driven plugin system supporting Azure (50+), AWS (14+), and Azure AI (8) resources with cost estimation and modules.
-
-<div class="flex justify-center mt-4">
-  <div class="w-3/4 h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 border-2 border-dashed border-gray-300">
-    <span class="text-lg">Screenshot: Resource Palette / Multi-Cloud</span>
-  </div>
-</div>
-
----
-transition: none
----
-
-# The Challenge
-
-## i18n & Accessibility
-
-6 languages, WCAG AA compliance, ARIA labels, and font scaling.
-
-<div class="flex justify-center mt-4">
-  <div class="w-3/4 h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 border-2 border-dashed border-gray-300">
-    <span class="text-lg">Screenshot: i18n / Accessibility</span>
-  </div>
-</div>
-
----
-transition: slide-left
----
-
-# The Challenge
-
-## CLI with Binary Distribution
-
-Full CLI with HCL generation, project creation wizard, terraform commands, and native binary packaging.
-
-<div class="flex justify-center mt-4">
-  <div class="w-3/4 h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-400 border-2 border-dashed border-gray-300">
-    <span class="text-lg">Screenshot: CLI</span>
-  </div>
+<div class="grid grid-cols-3 grid-rows-2 gap-2 h-100">
+  <img src="/canvas-view.png" class="rounded-lg w-full h-full object-cover col-span-2 row-span-1" />
+  <img src="/resource-palette.png" class="rounded-lg w-full h-full object-cover row-span-2" />
+  <img src="/plan-view.png" class="rounded-lg w-full h-full object-cover" />
+  <img src="/cli.png" class="rounded-lg w-full h-full object-cover" />
 </div>
 
 ---
 
 # The Traditional Way
 
-Building this without AI — estimated timeline for a small team:
+Building this without AI - estimated timeline for a small team:
 
 <div class="mt-6 space-y-3">
   <div class="flex items-center gap-3">
     <div class="w-44 text-right text-sm font-medium">Full-stack Dev</div>
     <div class="relative h-8 flex-1">
-      <div class="absolute inset-y-0 left-0 w-full bg-gray-100 rounded" />
-      <div class="absolute inset-y-0 left-0 rounded flex items-center pl-3 text-white text-xs font-bold" style="width: 100%; background: linear-gradient(90deg, #2563eb, #1d4ed8);">4–6 months</div>
+      <div class="absolute inset-y-0 left-0 w-full rounded opacity-10 bg-slate-500" />
+      <div class="absolute inset-y-0 left-0 rounded flex items-center pl-3 text-white text-xs font-bold" style="width: 100%; background: linear-gradient(90deg, #0d9488, #0f766e);">4–6 months</div>
     </div>
   </div>
   <div class="flex items-center gap-3">
     <div class="w-44 text-right text-sm font-medium">UI / UX</div>
     <div class="relative h-8 flex-1">
-      <div class="absolute inset-y-0 left-0 w-full bg-gray-100 rounded" />
-      <div class="absolute inset-y-0 left-0 rounded flex items-center pl-3 text-white text-xs font-bold" style="width: 50%; background: linear-gradient(90deg, #7c3aed, #6d28d9);">2–3 months</div>
+      <div class="absolute inset-y-0 left-0 w-full rounded opacity-10 bg-slate-500" />
+      <div class="absolute inset-y-0 left-0 rounded flex items-center pl-3 text-white text-xs font-bold" style="width: 50%; background: linear-gradient(90deg, #14b8a6, #0d9488);">2–3 months</div>
     </div>
   </div>
   <div class="flex items-center gap-3">
     <div class="w-44 text-right text-sm font-medium">Cloud Architect</div>
     <div class="relative h-8 flex-1">
-      <div class="absolute inset-y-0 left-0 w-full bg-gray-100 rounded" />
-      <div class="absolute inset-y-0 left-0 rounded flex items-center pl-3 text-white text-xs font-bold" style="width: 33%; background: linear-gradient(90deg, #0891b2, #0e7490);">1–2 months</div>
+      <div class="absolute inset-y-0 left-0 w-full rounded opacity-10 bg-slate-500" />
+      <div class="absolute inset-y-0 left-0 rounded flex items-center pl-3 text-white text-xs font-bold" style="width: 33%; background: linear-gradient(90deg, #2dd4bf, #14b8a6);">1–2 months</div>
     </div>
   </div>
   <div class="flex items-center gap-3">
     <div class="w-44 text-right text-sm font-medium">DevOps / CI</div>
     <div class="relative h-8 flex-1">
-      <div class="absolute inset-y-0 left-0 w-full bg-gray-100 rounded" />
-      <div class="absolute inset-y-0 left-0 rounded flex items-center pl-3 text-white text-xs font-bold" style="width: 33%; margin-left: 33%; background: linear-gradient(90deg, #ea580c, #c2410c);">1–2 months</div>
+      <div class="absolute inset-y-0 left-0 w-full rounded opacity-10 bg-slate-500" />
+      <div class="absolute inset-y-0 left-0 rounded flex items-center pl-3 text-white text-xs font-bold" style="width: 33%; margin-left: 33%; background: linear-gradient(90deg, #f59e0b, #d97706);">1–2 months</div>
     </div>
   </div>
   <div class="flex items-center gap-3">
     <div class="w-44 text-right text-sm font-medium">QA / Testing</div>
     <div class="relative h-8 flex-1">
-      <div class="absolute inset-y-0 left-0 w-full bg-gray-100 rounded" />
-      <div class="absolute inset-y-0 left-0 rounded flex items-center pl-3 text-white text-xs font-bold" style="width: 83%; margin-left: 17%; background: linear-gradient(90deg, #16a34a, #15803d);">Ongoing</div>
+      <div class="absolute inset-y-0 left-0 w-full rounded opacity-10 bg-slate-500" />
+      <div class="absolute inset-y-0 left-0 rounded flex items-center pl-3 text-white text-xs font-bold" style="width: 83%; margin-left: 17%; background: linear-gradient(90deg, #fbbf24, #f59e0b);">Ongoing</div>
     </div>
   </div>
   <div class="flex items-center gap-3 mt-1">
     <div class="w-44" />
-    <div class="flex-1 flex justify-between text-xs text-gray-400 px-1">
+    <div class="flex-1 flex justify-between text-xs opacity-40 px-1">
       <span>Month 1</span><span>Month 2</span><span>Month 3</span><span>Month 4</span><span>Month 5</span><span>Month 6+</span>
     </div>
   </div>
@@ -170,8 +108,8 @@ Building this without AI — estimated timeline for a small team:
 
 <v-click>
 
-<div class="text-center text-2xl mt-4 font-bold0">
-  We did it in 33 days
+<div class="text-center text-2xl mt-4 font-bold">
+  We did it in <span class="text-teal-400">33 days</span>
 </div>
 
 </v-click>
@@ -182,15 +120,15 @@ Building this without AI — estimated timeline for a small team:
 
 <div class="flex gap-6 h-96">
 <div class="flex flex-col items-center">
-  <div class="w-4 h-4 rounded-full bg-white ring-4 ring-gray-500 z-10" />
-  <div class="w-0.5 flex-1 bg-gray-500" />
-  <div class="w-4 h-4 rounded-full bg-white ring-4 ring-gray-500 z-10" />
-  <div class="w-0.5 flex-1 bg-gray-500" />
-  <div class="w-4 h-4 rounded-full bg-white ring-4 ring-gray-500 z-10" />
-  <div class="w-0.5 flex-1 bg-gray-500" />
-  <div class="w-4 h-4 rounded-full bg-white ring-4 ring-gray-500 z-10" />
-  <div class="w-0.5 flex-1 bg-gray-500" />
-  <div class="w-4 h-4 rounded-full bg-white ring-4 ring-gray-500 z-10" />
+  <div class="w-4 h-4 rounded-full bg-teal-500 ring-4 ring-teal-500/20 z-10" />
+  <div class="w-0.5 flex-1 bg-slate-500/40" />
+  <div class="w-4 h-4 rounded-full bg-teal-500 ring-4 ring-teal-500/20 z-10" />
+  <div class="w-0.5 flex-1 bg-slate-500/40" />
+  <div class="w-4 h-4 rounded-full bg-teal-500 ring-4 ring-teal-500/20 z-10" />
+  <div class="w-0.5 flex-1 bg-slate-500/40" />
+  <div class="w-4 h-4 rounded-full bg-amber-500 ring-4 ring-amber-500/20 z-10" />
+  <div class="w-0.5 flex-1 bg-slate-500/40" />
+  <div class="w-4 h-4 rounded-full bg-amber-500 ring-4 ring-amber-500/20 z-10" />
 </div>
 <div class="flex flex-col justify-between text-sm">
   <div>
@@ -218,7 +156,7 @@ Building this without AI — estimated timeline for a small team:
 
 <v-click>
 
-**Weeks 1-3**: 28% fix rate. **Weeks 4-5**: 47% fix rate. 48 versions shipped.
+<span class="font-extrabold">Weeks 1-3</span>: <span class="text-teal-400 font-extrabold">28%</span> fix rate. <span class="font-extrabold">Weeks 4-5</span>: <span class="text-amber-400 font-extrabold">47%</span> fix rate. <span class="font-extrabold">48 versions</span> shipped.
 
 </v-click>
 
@@ -239,167 +177,105 @@ Building this without AI — estimated timeline for a small team:
 
 # The Ship-Then-Fix Pattern
 
-Every major feature followed this cadence:
+Every major feature followed this cadence - <span class="font-extrabold text-amber-400">16 instances</span> across the project:
 
 <div class="flex flex-col items-center gap-1 mt-4">
-  <div class="px-4 py-1.5 rounded bg-green-500/20 border border-green-500/40 font-bold text-sm">Ship feature (1-2 commits)</div>
+  <div class="px-4 py-1.5 rounded bg-teal-500/20 border border-teal-500/40 font-bold text-sm">Ship feature (1-2 commits)</div>
   <div class="opacity-40">↓</div>
-  <div class="px-4 py-1.5 rounded bg-red-500/20 border border-red-500/40 font-bold text-sm">Discover 2-5 issues</div>
+  <div class="px-4 py-1.5 rounded bg-amber-500/20 border border-amber-500/40 font-bold text-sm">Discover 2-5 issues</div>
   <div class="opacity-40">↓</div>
-  <div class="px-4 py-1.5 rounded bg-yellow-500/20 border border-yellow-500/40 font-bold text-sm">Fix in rapid succession</div>
+  <div class="px-4 py-1.5 rounded bg-slate-500/20 border border-slate-500/40 font-bold text-sm">Fix in rapid succession</div>
   <div class="opacity-40">↓</div>
   <div class="px-4 py-1.5 rounded opacity-40 border border-current text-sm">Move on → repeat</div>
 </div>
 
-**16 instances** of 2+ consecutive fix commits following a feature across the project.
-
 ---
 
-# The Naming Convention Collapse
+# The Fix Chains
 
-Adding a "Display Name" field created a **circular dependency** — 7 consecutive fixes:
-
-```
-feat: add display name field
-fix: replace checkbox with toggle           ← 1
-fix: inherit naming tokens from parent RG   ← 2
-fix: remove redundant field, fix feedback loop ← 3
-fix: decouple slug from computed name       ← 4
-fix: restore naming_region shortcode        ← 5
-fix: keep label in sync with slug           ← 6
-fix: propagate RG overrides to child nodes  ← 7
-```
-
-Slug derived from name. Name derived from slug. Label derived from both.
-Each fix broke a different direction of the cycle.
-
----
-
-# The npm Publish Saga
-
-Adding CLI publishing to the release pipeline: **21 fix commits, zero features**
-
-<div class="grid grid-cols-2 gap-4">
-<div>
-
-```
-fix: direct pkg path (npm conflict)
-fix: switch to OIDC trusted publishing
-fix: rename to @afroze9/terrastudio-cli
-fix: remove email from author
-fix: track CLI in release-please
-fix: remove manual release trigger
-fix: gate jobs on desktop release
-fix: force release-please PR
-fix: unblock after tagging v0.41.3
-fix: job-level id-token permission
-```
-
-</div>
-<div>
-
-```
-fix: remove --provenance (%2f bug)
-fix: Node 24 for OIDC provenance
-fix: add repository url for provenance
-fix: bump to 0.41.7 and align versions
-...and 7 more
-```
-
-<br>
-
-Version jumped **v0.41.0 → v0.41.7**
-with **zero feature changes**.
-
-7 patch versions of pure CI fighting.
-
-</div>
-</div>
-
----
-
-# The Eureka Moment
-
-Once the schema-driven plugin system clicked, adding resources became **mechanical**:
-
-<div class="grid grid-cols-2 gap-8">
-<div>
-
-```mermaid
-graph LR
-    A[Schema] --> D[Full Resource]
-    B[HCL Generator] --> D
-    C[Icon] --> D
-    D --> E[Palette Entry]
-    D --> F[Sidebar Form]
-    D --> G[Validation]
-    D --> H[Terraform Output]
-```
-
-</div>
-<div>
+Every major subsystem had its own debugging saga - <span class="font-extrabold text-amber-400">48 total fix commits</span> across 6 chains:
 
 <v-clicks>
 
-- i18n (6 languages) — **1 commit**
-- Accessibility (WCAG AA) — **3 commits**
-- MCP server — **1 commit**
-- AWS plugin (14 resources) — **4 commits**
-- Azure AI plugin (8 resources) — **2 commits**
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-amber-500/30 bg-amber-500/10 mt-2">
+  <div class="font-bold text-sm w-52">npm Publish Pipeline</div>
+  <div class="opacity-70 text-xs flex-1">OIDC, provenance, scoped packages, release-please - 7 patch versions, zero features</div>
+  <div class="font-bold text-amber-400 text-xs">21 fixes</div>
+</div>
+
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-amber-500/30 bg-amber-500/10 mt-2">
+  <div class="font-bold text-sm w-52">Naming Conventions</div>
+  <div class="opacity-70 text-xs flex-1">Slug → name → slug circular dependency. Each fix broke a different direction</div>
+  <div class="font-bold text-amber-400 text-xs">7 fixes</div>
+</div>
+
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-amber-500/30 bg-amber-500/10 mt-2">
+  <div class="font-bold text-sm w-52">Module System</div>
+  <div class="opacity-70 text-xs flex-1">Synthetic nodes leaked into HCL gen, export, save/load, and cost estimation</div>
+  <div class="font-bold text-amber-400 text-xs">6 fixes</div>
+</div>
+
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-amber-500/30 bg-amber-500/10 mt-2">
+  <div class="font-bold text-sm w-52">Container Model</div>
+  <div class="opacity-70 text-xs flex-1">canContain → canBeChildOf inversion cascaded through every container resource</div>
+  <div class="font-bold text-amber-400 text-xs">5 fixes</div>
+</div>
+
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-amber-500/30 bg-amber-500/10 mt-2">
+  <div class="font-bold text-sm w-52">TypeScript Types</div>
+  <div class="opacity-70 text-xs flex-1">Adding one reactive interface created implicit-any errors across the entire codebase</div>
+  <div class="font-bold text-amber-400 text-xs">5 fixes</div>
+</div>
+
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-amber-500/30 bg-amber-500/10 mt-2">
+  <div class="font-bold text-sm w-52">Drag-and-Drop</div>
+  <div class="opacity-70 text-xs flex-1">WebView2 ≠ browser - the most basic interaction took 4 attempts to get working</div>
+  <div class="font-bold text-amber-400 text-xs">4 fixes</div>
+</div>
 
 </v-clicks>
 
-</div>
-</div>
-
-<v-click>
-
-**But**: the resource audit at v0.42 found **~30 schema issues** across 64+ resources.
-Speed created silent quality debt that only appeared under systematic review.
-
-</v-click>
-
 ---
 
 
-# Where AI Failed — Every Time
+# Where AI Failed - Every Time
 
 <v-clicks>
 
-<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-red-500/30 bg-red-500/10 mt-2">
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-amber-500/30 bg-amber-500/10 mt-2">
   <div class="font-bold text-sm w-52">Platform Blind Spots</div>
   <div class="opacity-70 text-xs flex-1">WebView2 DnD, Svelte 5 proxies, CJS/ESM</div>
-  <div class="font-bold text-red-400 text-xs">12+ fixes</div>
+  <div class="font-bold text-amber-400 text-xs">12+ fixes</div>
 </div>
 
-<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-red-500/30 bg-red-500/10 mt-2">
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-amber-500/30 bg-amber-500/10 mt-2">
   <div class="font-bold text-sm w-52">Wrong Architecture</div>
   <div class="opacity-70 text-xs flex-1">canContain → canBeChildOf, naming cycles</div>
-  <div class="font-bold text-red-400 text-xs">9 rewrites</div>
+  <div class="font-bold text-amber-400 text-xs">9 rewrites</div>
 </div>
 
-<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-red-500/30 bg-red-500/10 mt-2">
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-amber-500/30 bg-amber-500/10 mt-2">
   <div class="font-bold text-sm w-52">No Security Instinct</div>
   <div class="opacity-70 text-xs flex-1">HCL injection shipped for 12 versions</div>
-  <div class="font-bold text-red-400 text-xs">Retrofitted</div>
+  <div class="font-bold text-amber-400 text-xs">Retrofitted</div>
 </div>
 
-<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-red-500/30 bg-red-500/10 mt-2">
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-amber-500/30 bg-amber-500/10 mt-2">
   <div class="font-bold text-sm w-52">Cascading Blindness</div>
   <div class="opacity-70 text-xs flex-1">Module nodes leaked into every pipeline</div>
-  <div class="font-bold text-red-400 text-xs">6 fixes</div>
+  <div class="font-bold text-amber-400 text-xs">6 fixes</div>
 </div>
 
-<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-red-500/30 bg-red-500/10 mt-2">
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-amber-500/30 bg-amber-500/10 mt-2">
   <div class="font-bold text-sm w-52">No Testing Initiative</div>
   <div class="opacity-70 text-xs flex-1">3 test commits out of 338 (0.9%)</div>
-  <div class="font-bold text-red-400 text-xs">30 audit issues</div>
+  <div class="font-bold text-amber-400 text-xs">30 audit issues</div>
 </div>
 
-<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-red-500/30 bg-red-500/10 mt-2">
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-amber-500/30 bg-amber-500/10 mt-2">
   <div class="font-bold text-sm w-52">CI/CD Incompetence</div>
   <div class="opacity-70 text-xs flex-1">npm publish saga</div>
-  <div class="font-bold text-red-400 text-xs">21 fixes</div>
+  <div class="font-bold text-amber-400 text-xs">21 fixes</div>
 </div>
 
 </v-clicks>
@@ -408,7 +284,7 @@ Speed created silent quality debt that only appeared under systematic review.
 
 <div class="text-center mt-4">
 
-AI chose the wrong architecture **9 out of 9 times** when left to its own judgment.
+AI chose the wrong architecture <span class="font-extrabold text-amber-400">9 out of 9 times</span> when left to its own judgment.
 
 </div>
 
@@ -426,66 +302,66 @@ AI chose the wrong architecture **9 out of 9 times** when left to its own judgme
 <v-clicks>
 
 <div class="grid grid-cols-2 gap-4 mt-2">
-  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-green-500/30 bg-green-500/10">
+  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-teal-500/30 bg-teal-500/10">
     <div class="font-bold text-sm w-44">Time to product</div>
-    <div class="font-bold text-green-400 text-sm">33 days</div>
+    <div class="font-bold text-teal-400 text-sm">33 days</div>
   </div>
-  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-gray-500/30 bg-gray-500/10">
+  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-slate-500/30 bg-slate-500/10">
     <div class="font-bold text-sm w-44">Time to product</div>
-    <div class="opacity-70 text-sm">3-9 months</div>
+    <div class="opacity-70 text-sm">4-6 months</div>
   </div>
 </div>
 
 <div class="grid grid-cols-2 gap-4 mt-2">
-  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-green-500/30 bg-green-500/10">
+  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-teal-500/30 bg-teal-500/10">
     <div class="font-bold text-sm w-44">Human hours</div>
-    <div class="font-bold text-green-400 text-sm">~80-100 hrs*</div>
+    <div class="font-bold text-teal-400 text-sm">~80-100 hrs*</div>
   </div>
-  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-gray-500/30 bg-gray-500/10">
+  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-slate-500/30 bg-slate-500/10">
     <div class="font-bold text-sm w-44">Human hours</div>
-    <div class="opacity-70 text-sm">1,500-3,000 hrs</div>
+    <div class="opacity-70 text-sm">~2,000-3,000 hrs</div>
   </div>
 </div>
 
 <div class="grid grid-cols-2 gap-4 mt-2">
-  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-green-500/30 bg-green-500/10">
+  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-teal-500/30 bg-teal-500/10">
     <div class="font-bold text-sm w-44">Features shipped</div>
-    <div class="font-bold text-green-400 text-sm">48 versions, 72+ resources</div>
+    <div class="font-bold text-teal-400 text-sm">48 versions, 72+ resources</div>
   </div>
-  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-gray-500/30 bg-gray-500/10">
+  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-slate-500/30 bg-slate-500/10">
     <div class="font-bold text-sm w-44">Features shipped</div>
     <div class="opacity-70 text-sm">Same scope</div>
   </div>
 </div>
 
 <div class="grid grid-cols-2 gap-4 mt-2">
-  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-red-500/30 bg-red-500/10">
+  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-amber-500/30 bg-amber-500/10">
     <div class="font-bold text-sm w-44">Bug rate</div>
-    <div class="font-bold text-red-400 text-sm">33% fix commits</div>
+    <div class="font-bold text-amber-400 text-sm">33% fix commits</div>
   </div>
-  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-gray-500/30 bg-gray-500/10">
+  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-slate-500/30 bg-slate-500/10">
     <div class="font-bold text-sm w-44">Bug rate</div>
     <div class="opacity-70 text-sm">~10-15%</div>
   </div>
 </div>
 
 <div class="grid grid-cols-2 gap-4 mt-2">
-  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-red-500/30 bg-red-500/10">
+  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-amber-500/30 bg-amber-500/10">
     <div class="font-bold text-sm w-44">Test coverage</div>
-    <div class="font-bold text-red-400 text-sm">0.9%</div>
+    <div class="font-bold text-amber-400 text-sm">0.9%</div>
   </div>
-  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-gray-500/30 bg-gray-500/10">
+  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-slate-500/30 bg-slate-500/10">
     <div class="font-bold text-sm w-44">Test coverage</div>
     <div class="opacity-70 text-sm">40-70%</div>
   </div>
 </div>
 
 <div class="grid grid-cols-2 gap-4 mt-2">
-  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-red-500/30 bg-red-500/10">
+  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-amber-500/30 bg-amber-500/10">
     <div class="font-bold text-sm w-44">Arch rewrites</div>
-    <div class="font-bold text-red-400 text-sm">9</div>
+    <div class="font-bold text-amber-400 text-sm">9</div>
   </div>
-  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-gray-500/30 bg-gray-500/10">
+  <div class="flex items-center gap-3 px-4 py-2 rounded-lg border border-slate-500/30 bg-slate-500/10">
     <div class="font-bold text-sm w-44">Arch rewrites</div>
     <div class="opacity-70 text-sm">1-2</div>
   </div>
@@ -497,25 +373,25 @@ AI chose the wrong architecture **9 out of 9 times** when left to its own judgme
 
 # Takeaway 1: AI Is a Brilliant Junior Dev
 
-AI produces incredible velocity but requires a human to catch every:
+AI produces <span class="font-extrabold text-teal-400">incredible velocity</span> but requires a human to catch every:
 
 <div class="mt-4 space-y-3">
 <v-clicks>
-  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-gray-500/15 border border-gray-500/30 ml-0">
+  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-slate-500/15 border border-slate-500/30 ml-0">
     <div class="font-bold text-sm w-44">Architectural mistakes</div>
-    <div class="text-sm opacity-80">9 wrong abstractions — wrong every time when left to its own judgment</div>
+    <div class="text-sm opacity-80">9 wrong abstractions - wrong every time when left to its own judgment</div>
   </div>
-  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-gray-500/15 border border-gray-500/30 ml-8">
+  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-slate-500/15 border border-slate-500/30 ml-8">
     <div class="font-bold text-sm w-44">Security vulnerabilities</div>
     <div class="text-sm opacity-80">HCL injection shipped undetected for 12 versions</div>
   </div>
-  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-gray-500/15 border border-gray-500/30 ml-16">
+  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-slate-500/15 border border-slate-500/30 ml-16">
     <div class="font-bold text-sm w-44">Platform quirks</div>
-    <div class="text-sm opacity-80">WebView2, CJS/ESM, npm OIDC — blind spots in every runtime</div>
+    <div class="text-sm opacity-80">WebView2, CJS/ESM, npm OIDC - blind spots in every runtime</div>
   </div>
-  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-gray-500/15 border border-gray-500/30 ml-24">
+  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-slate-500/15 border border-slate-500/30 ml-24">
     <div class="font-bold text-sm w-44">Cascading failures</div>
-    <div class="text-sm opacity-80">Module nodes, naming cycles — fixes locally, breaks globally</div>
+    <div class="text-sm opacity-80">Module nodes, naming cycles - fixes locally, breaks globally</div>
   </div>
 </v-clicks>
 </div>
@@ -523,12 +399,12 @@ AI produces incredible velocity but requires a human to catch every:
 <v-click>
 
 <div class="flex gap-8 mt-6 items-center">
-  <div class="px-5 py-2 rounded-lg bg-gray-500/15 border border-gray-500/30 text-center">
+  <div class="px-5 py-2 rounded-lg bg-teal-500/15 border border-teal-500/30 text-center">
     <div class="text-xs opacity-60">Weeks 1-3</div>
     <div class="font-bold">28% fixes</div>
   </div>
   <div class="text-xl opacity-30">→</div>
-  <div class="px-5 py-2 rounded-lg bg-gray-500/15 border border-gray-500/30 text-center">
+  <div class="px-5 py-2 rounded-lg bg-amber-500/15 border border-amber-500/30 text-center">
     <div class="text-xs opacity-60">Weeks 4-5</div>
     <div class="font-bold">47% fixes</div>
   </div>
@@ -541,27 +417,27 @@ AI produces incredible velocity but requires a human to catch every:
 
 # Takeaway 2: Architecture Is the New Bottleneck
 
-The optimal approach is **architect-led, AI-accelerated development**:
+The optimal approach is <span class="font-extrabold text-teal-400">architect-led, AI-accelerated development</span>:
 
 <div class="mt-4 space-y-3">
 <v-clicks>
-  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-blue-500/15 border border-blue-500/30 ml-0">
+  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-teal-500/15 border border-teal-500/30 ml-0">
     <div class="font-bold text-sm w-20">Human</div>
     <div class="text-sm opacity-80">Design the architecture, security model, and CI pipeline</div>
   </div>
-  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-green-500/15 border border-green-500/30 ml-12">
+  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-teal-500/15 border border-teal-500/30 ml-12">
     <div class="font-bold text-sm w-20">AI</div>
     <div class="text-sm opacity-80">Implement features at 10x speed</div>
   </div>
-  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-yellow-500/15 border border-yellow-500/30 ml-24">
+  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-slate-500/15 border border-slate-500/30 ml-24">
     <div class="font-bold text-sm w-20">CI</div>
     <div class="text-sm opacity-80">Enforce tests and linting automatically</div>
   </div>
-  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-blue-500/15 border border-blue-500/30 ml-36">
+  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-teal-500/15 border border-teal-500/30 ml-36">
     <div class="font-bold text-sm w-20">Human</div>
     <div class="text-sm opacity-80">Review before merge</div>
   </div>
-  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-purple-500/15 border border-purple-500/30 ml-48">
+  <div class="flex items-center gap-4 px-5 py-3 rounded-xl bg-amber-500/15 border border-amber-500/30 ml-48">
     <div class="font-bold text-sm w-20">Audit</div>
     <div class="text-sm opacity-80">Catch accumulated quality debt periodically</div>
   </div>
@@ -572,21 +448,30 @@ The optimal approach is **architect-led, AI-accelerated development**:
 
 <div class="text-center mt-8 text-lg">
 
-> The 33% fix tax is the price of velocity — and it compounds as complexity grows.
-> The question isn't whether to pay it — it's whether your architecture and testing strategy can keep it from becoming the dominant cost.
+> The 33% fix tax is the price of velocity - and it compounds as complexity grows.
+> The question isn't whether to pay it - it's whether your architecture and testing strategy can keep it from becoming the dominant cost.
 
 </div>
 
 </v-click>
 
 ---
-class: text-center
----
 
 # Questions?
 
-<br>
-
-**TerraStudio**: github.com/afroze9/terrastudio
-
-**This Analysis**: github.com/afroze9/terrastudio-devhistory
+<div class="flex gap-12 mt-8">
+  <div class="flex items-center gap-4">
+    <img src="/terrastudio-qr.png" class="w-36 h-36 rounded-lg" />
+    <div>
+      <div class="font-bold text-sm">TerraStudio</div>
+      <a href="https://github.com/afroze9/terrastudio" target="_blank" class="text-sm underline opacity-70">github.com/afroze9/terrastudio</a>
+    </div>
+  </div>
+  <div class="flex items-center gap-4">
+    <img src="/devhistory-qr.png" class="w-36 h-36 rounded-lg" />
+    <div>
+      <div class="font-bold text-sm">This Analysis</div>
+      <a href="https://github.com/afroze9/terrastudio-devhistory" target="_blank" class="text-sm underline opacity-70">github.com/afroze9/terrastudio-devhistory</a>
+    </div>
+  </div>
+</div>

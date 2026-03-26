@@ -5,7 +5,14 @@
       "Bash(git push:*)",
       "Bash(npm init:*)",
       "Bash(npm install:*)",
-      "Bash(npx --yes qrcode -o timeline-qr.png \"https://afrozeamjad.com/projects/terrastudio/timeline.html\")"
+      "Bash(npx --yes qrcode -o timeline-qr.png \"https://afrozeamjad.com/projects/terrastudio/timeline.html\")",
+      "Bash(npx --yes qrcode -o terrastudio-qr.png \"https://github.com/afroze9/terrastudio\")",
+      "Bash(npx qrcode:*)",
+      "Bash(node -e \"const QRCode = require\\(''qrcode''\\); QRCode.toFile\\(''terrastudio-qr.png'', ''https://github.com/afroze9/terrastudio''\\); QRCode.toFile\\(''devhistory-qr.png'', ''https://github.com/afroze9/terrastudio-devhistory''\\);\")",
+      "Bash(node -e \"const QRCode = require\\(''''qrcode''''\\); QRCode.toFile\\(''''public/terrastudio-qr.png'''', ''''https://github.com/afroze9/terrastudio''''\\); QRCode.toFile\\(''''public/devhistory-qr.png'''', ''''https://github.com/afroze9/terrastudio-devhistory''''\\);\")",
+      "Bash(ls -la \"i:/source/terrastudio-devhistory/presentations/public/\"*.png)",
+      "Bash(npx slidev:*)",
+      "Bash(npm i:*)"
     ]
   }
 }

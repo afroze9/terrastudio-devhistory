@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -lah /i/source/terrastudio-devhistory/*.md /i/source/terrastudio-devhistory/*.html)",
+      "Bash(git push:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(npx --yes qrcode -o timeline-qr.png \"https://afrozeamjad.com/projects/terrastudio/timeline.html\")"
+    ]
+  }
+}
